@@ -599,6 +599,10 @@ class PSUControl(octoprint.plugin.StartupPlugin,
             self._logger.info("Firmware or communication error detected. Turning PSU Off")
             self.turn_psu_off()
             return
+        elif event == Events.DISCONNECTED and self.isPSUOn:
+            self._logger.info("Printer disconnect detected. Turning PSU Off")
+            self.turn_psu_off()
+            return
 
 
     def get_api_commands(self):
